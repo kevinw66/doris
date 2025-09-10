@@ -100,22 +100,22 @@ TEST_F(Utf8CheckTest, empty) {
 }
 
 TEST_F(Utf8CheckTest, normal) {
-    for (int i = 0; i < sizeof(pos) / sizeof(pos[0]); ++i) {
+    for (int i = 0; i < pos.size(); ++i) {
         EXPECT_TRUE(validate_utf8(pos[i].data, pos[i].len));
     }
 }
 
 TEST_F(Utf8CheckTest, abnormal) {
-    for (int i = 0; i < sizeof(neg) / sizeof(neg[0]); ++i) {
+    for (int i = 0; i < neg.size(); ++i) {
         EXPECT_FALSE(validate_utf8(neg[i].data, neg[i].len));
     }
 }
 
 TEST_F(Utf8CheckTest, naive) {
-    for (int i = 0; i < sizeof(pos) / sizeof(pos[0]); ++i) {
+    for (int i = 0; i < pos.size(); ++i) {
         EXPECT_TRUE(validate_utf8_naive(pos[i].data, pos[i].len));
     }
-    for (int i = 0; i < sizeof(neg) / sizeof(neg[0]); ++i) {
+    for (int i = 0; i < neg.size(); ++i) {
         EXPECT_FALSE(validate_utf8_naive(neg[i].data, neg[i].len));
     }
 }
