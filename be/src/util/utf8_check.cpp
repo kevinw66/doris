@@ -222,11 +222,14 @@ bool utf8_range(const char* data, size_t len) {
             return false;
         }
 
-        uint32_t token4;
-        svuint32_t prev_input_u32 = svreinterpret_u32_u8(prev_input);
-        svbool_t pg_u32 = svptrue_b32();
-        token4 = svlastb_u32(pg_u32, prev_input_u32);
-        const auto* token = (const int8_t*)&token4;
+        //uint32_t token4;
+        //svuint32_t prev_input_u32 = svreinterpret_u32_u8(prev_input);
+        //svbool_t pg_u32 = svptrue_b32();
+        //token4 = svlastb_u32(pg_u32, prev_input_u32);
+        //const auto* token = (const int8_t*)&token4;
+
+        // better performance
+        const auto* token = (const int8_t*)(data - 4);
 
         int lookahead = 0;
         if (token[3] > (int8_t)0xBF) {
